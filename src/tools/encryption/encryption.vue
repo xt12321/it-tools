@@ -19,60 +19,60 @@ const [decryptOutput, decryptError] = computedCatch(() => algos[decryptAlgo.valu
 </script>
 
 <template>
-  <c-card title="Encrypt">
+  <c-card title="Encrypt(加密)">
     <div flex gap-3>
       <c-input-text
         v-model:value="cypherInput"
-        label="Your text:"
+        label="你的文本:"
         placeholder="The string to cypher"
         rows="4"
         multiline raw-text monospace autosize flex-1
       />
       <div flex flex-1 flex-col gap-2>
-        <c-input-text v-model:value="cypherSecret" label="Your secret key:" clearable raw-text />
+        <c-input-text v-model:value="cypherSecret" label="你的密钥:" clearable raw-text />
 
         <c-select
           v-model:value="cypherAlgo"
-          label="Encryption algorithm:"
+          label="加密算法:"
           :options="Object.keys(algos).map((label) => ({ label, value: label }))"
         />
       </div>
     </div>
     <c-input-text
-      label="Your text encrypted:"
+      label="已加密的文本:"
       :value="cypherOutput"
       rows="3"
-      placeholder="Your string hash"
+      placeholder="已加密的文本hash"
       multiline monospace readonly autosize mt-5
     />
   </c-card>
-  <c-card title="Decrypt">
+  <c-card title="Decrypt( 解密)">
     <div flex gap-3>
       <c-input-text
         v-model:value="decryptInput"
-        label="Your encrypted text:"
-        placeholder="The string to cypher"
+        label="你加密的文本:"
+        placeholder="填入你的密文"
         rows="4"
         multiline raw-text monospace autosize flex-1
       />
       <div flex flex-1 flex-col gap-2>
-        <c-input-text v-model:value="decryptSecret" label="Your secret key:" clearable raw-text />
+        <c-input-text v-model:value="decryptSecret" label="你的密钥:" clearable raw-text />
 
         <c-select
           v-model:value="decryptAlgo"
-          label="Encryption algorithm:"
+          label="加密算法:"
           :options="Object.keys(algos).map((label) => ({ label, value: label }))"
         />
       </div>
     </div>
-    <c-alert v-if="decryptError" type="error" mt-12 title="Error while decrypting">
+    <c-alert v-if="decryptError" type="error" mt-12 title="解密失败">
       {{ decryptError }}
     </c-alert>
     <c-input-text
       v-else
-      label="Your decrypted text:"
+      label="解密后的文本:"
       :value="decryptOutput"
-      placeholder="Your string hash"
+      placeholder="解密后的文本内容"
       rows="3"
       multiline monospace readonly autosize mt-5
     />

@@ -42,16 +42,16 @@ const [uuids, refreshUUIDs] = computedRefreshable(() => withDefaultOnError(() =>
     return generator(index);
   }).join('\n'), ''));
 
-const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' });
+const { copy } = useCopy({ source: uuids, text: '复制 UUIDs 成功！' });
 </script>
 
 <template>
   <div>
-    <c-buttons-select v-model:value="version" :options="versions" label="UUID version" label-width="100px" mb-2 />
+    <c-buttons-select v-model:value="version" :options="versions" label="UUID 版本" label-width="100px" mb-2 />
 
     <div mb-2 flex items-center>
-      <span w-100px>Quantity </span>
-      <n-input-number v-model:value="count" flex-1 :min="1" :max="50" placeholder="UUID quantity" />
+      <span w-100px>生成数量 </span>
+      <n-input-number v-model:value="count" flex-1 :min="1" :max="50" placeholder="UUID 生成数量" />
     </div>
 
     <div v-if="version === 'v3' || version === 'v5'">
@@ -95,7 +95,7 @@ const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' 
       style="text-align: center; font-family: monospace"
       :value="uuids"
       multiline
-      placeholder="Your uuids"
+      placeholder="待生成的 uuids 们"
       autosize
       rows="1"
       readonly
@@ -107,10 +107,10 @@ const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' 
 
     <div flex justify-center gap-3>
       <c-button autofocus @click="copy()">
-        Copy
+        复制
       </c-button>
       <c-button @click="refreshUUIDs">
-        Refresh
+        刷新
       </c-button>
     </div>
   </div>

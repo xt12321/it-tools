@@ -23,8 +23,8 @@ import { withDefaultOnError } from '@/utils/defaults';
 
 const languages = {
   'English': englishWordList,
-  'Chinese simplified': chineseSimplifiedWordList,
-  'Chinese traditional': chineseTraditionalWordList,
+  '简体中文': chineseSimplifiedWordList,
+  '繁体中文': chineseTraditionalWordList,
   'Czech': czechWordList,
   'French': frenchWordList,
   'Italian': italianWordList,
@@ -37,7 +37,7 @@ const languages = {
 const entropy = ref(generateEntropy());
 const passphraseInput = ref('');
 
-const language = ref<keyof typeof languages>('English');
+const language = ref<keyof typeof languages>('简体中文');
 const passphrase = computed({
   get() {
     return withDefaultOnError(() => entropyToMnemonic(entropy.value, languages[language.value]), passphraseInput.value);
@@ -76,8 +76,8 @@ function refreshEntropy() {
   entropy.value = generateEntropy();
 }
 
-const { copy: copyEntropy } = useCopy({ source: entropy, text: 'Entropy copied to the clipboard' });
-const { copy: copyPassphrase } = useCopy({ source: passphrase, text: 'Passphrase copied to the clipboard' });
+const { copy: copyEntropy } = useCopy({ source: entropy, text: '刷新' });
+const { copy: copyPassphrase } = useCopy({ source: passphrase, text: '复制成功' });
 </script>
 
 <template>
@@ -87,13 +87,13 @@ const { copy: copyPassphrase } = useCopy({ source: passphrase, text: 'Passphrase
         <c-select
           v-model:value="language"
           searchable
-          label="Language:"
+          label="语言:"
           :options="Object.keys(languages)"
         />
       </n-gi>
       <n-gi span="2">
         <n-form-item
-          label="Entropy (seed):"
+          label="Entropy熵 (seed):"
           :feedback="entropyValidation.message"
           :validation-status="entropyValidation.status"
         >
