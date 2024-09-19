@@ -1,3 +1,10 @@
+## 说明
+```text
+1. 自用，嫌懒，直接转中文，不支持 I18n 配置了，去掉了觉得不好看的样式
+2. 只改了部分中文，后续中文看时间改
+```
+
+
 <picture>
     <source srcset="./.github/logo-dark.png" media="(prefers-color-scheme: light)">
     <source srcset="./.github/logo-white.png" media="(prefers-color-scheme: dark)">
